@@ -1,0 +1,19 @@
+{
+  "name": "shy-elt-boggle",
+  "version": "0.0.1",
+  "homepage": "https://github.com/shycherry/shy-elt-boggle",
+  "authors": [
+    "shycherry <vinpowful@free.fr>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "latest"
+  }
+}
