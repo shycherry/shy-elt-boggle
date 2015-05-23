@@ -1,9 +1,15 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../shy-elt-freewall/shy-elt-freewall.html">
 
-<polymer-element name="shy-elt-boggle" attributes="noTime">
+<polymer-element name="shy-elt-boggle" attributes="noTime eltSize">
   <template>
     <style>
+      .letter{
+        position: inherit;
+        left: 50%;
+        top:50%;
+        -webkit-transform: translate(-50%, -50%);
+      }
       .dice{
         -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
         text-align: center;
@@ -12,7 +18,7 @@
         font-family: sans-serif;
       }
     </style>
-    <div style="width:500px;height:500px;">
+    <div style="{{'width:'+eltSize+'px;height:'+eltSize+'px;'}}">
       <shy-elt-freewall id="container"></shy-elt-freewall>
     </div>
     <template if="{{ (!noTime) && (_time > 0)}}">
@@ -44,8 +50,11 @@
     ];
     Polymer('shy-elt-boggle',{
       noTime: false,
+      eltSize : 500,
       _time:180,
       domReady: function(){
+        var initialContent = this.innerHTML.trim().toUpperCase();
+
         for(var diceIdx in dices){
 
           var currentDice = dices[diceIdx];
@@ -53,7 +62,13 @@
           var divDice = document.createElement('div');
           var innerDivDice = document.createElement('div');
           divDice.className = "dice";
-          innerDivDice.textContent = currentDice[randIdx];
+          innerDivDice.className = "letter";
+
+          if(initialContent.length == 16)
+            innerDivDice.textContent = initialContent[diceIdx];
+          else
+            innerDivDice.textContent = currentDice[randIdx];
+
           divDice.appendChild(innerDivDice);
           this.$.container.appendChild(divDice);
         }
