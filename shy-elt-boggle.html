@@ -1,23 +1,23 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../shy-elt-freewall/shy-elt-freewall.html">
 
-<polymer-element name="shy-elt-boggle" attributes="noTime eltSize">
+<dom-module name="shy-elt-boggle">
+  <style>
+    .letter{
+      position: inherit;
+      left: 50%;
+      top:50%;
+      -webkit-transform: translate(-50%, -50%);
+    }
+    .dice{
+      -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+      text-align: center;
+      font-weight: bold;
+      font-size: -webkit-xxx-large;
+      font-family: sans-serif;
+    }
+  </style>
   <template>
-    <style>
-      .letter{
-        position: inherit;
-        left: 50%;
-        top:50%;
-        -webkit-transform: translate(-50%, -50%);
-      }
-      .dice{
-        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-        text-align: center;
-        font-weight: bold;
-        font-size: -webkit-xxx-large;
-        font-family: sans-serif;
-      }
-    </style>
     <div style="{{'width:'+eltSize+'px;height:'+eltSize+'px;'}}">
       <shy-elt-freewall id="container"></shy-elt-freewall>
     </div>
@@ -29,57 +29,60 @@
     </template>
 
   </template>
-  <script>
-    var dices = [
-      ["E", "T", "U", "K", "N", "O"],
-      ["E", "V", "G", "T", "I", "N"],
-      ["D", "E", "C", "A", "M", "P"],
-      ["I", "E", "L", "R", "U", "W"],
-      ["E", "H", "I", "F", "S", "E"],
-      ["R", "E", "C", "A", "L", "S"],
-      ["E", "N", "T", "D", "O", "S"],
-      ["O", "F", "X", "R", "I", "A"],
-      ["N", "A", "V", "E", "D", "Z"],
-      ["E", "I", "O", "A", "T", "A"],
-      ["G", "L", "E", "N", "Y", "U"],
-      ["B", "M", "A", "Q", "J", "O"],
-      ["T", "L", "I", "B", "R", "A"],
-      ["S", "P", "U", "L", "T", "E"],
-      ["A", "I", "M", "S", "O", "R"],
-      ["E", "N", "H", "R", "I", "S"]
-    ];
-    Polymer('shy-elt-boggle',{
+</dom-module>
+<script>
+  var dices = [
+    ["E", "T", "U", "K", "N", "O"],
+    ["E", "V", "G", "T", "I", "N"],
+    ["D", "E", "C", "A", "M", "P"],
+    ["I", "E", "L", "R", "U", "W"],
+    ["E", "H", "I", "F", "S", "E"],
+    ["R", "E", "C", "A", "L", "S"],
+    ["E", "N", "T", "D", "O", "S"],
+    ["O", "F", "X", "R", "I", "A"],
+    ["N", "A", "V", "E", "D", "Z"],
+    ["E", "I", "O", "A", "T", "A"],
+    ["G", "L", "E", "N", "Y", "U"],
+    ["B", "M", "A", "Q", "J", "O"],
+    ["T", "L", "I", "B", "R", "A"],
+    ["S", "P", "U", "L", "T", "E"],
+    ["A", "I", "M", "S", "O", "R"],
+    ["E", "N", "H", "R", "I", "S"]
+  ];
+  Polymer({
+    is: "shy-elt-boggle",
+    hostAttributes: {
       noTime: false,
-      eltSize : 500,
-      _time:180,
-      domReady: function(){
-        var initialContent = this.innerHTML.trim().toUpperCase();
+      eltSize : 500
+    },
+    _time:180,
+    ready : function(){
+      var initialContent = this.innerHTML.trim().toUpperCase();
 
-        for(var diceIdx in dices){
+      for(var diceIdx in dices){
 
-          var currentDice = dices[diceIdx];
-          var randIdx = Math.floor((Math.random() * currentDice.length));
-          var divDice = document.createElement('div');
-          var innerDivDice = document.createElement('div');
-          divDice.className = "dice";
-          innerDivDice.className = "letter";
+        var currentDice = dices[diceIdx];
+        var randIdx = Math.floor((Math.random() * currentDice.length));
+        var divDice = document.createElement('div');
+        var innerDivDice = document.createElement('div');
+        divDice.className = "dice";
+        innerDivDice.className = "letter";
 
-          if(initialContent.length == 16)
-            innerDivDice.textContent = initialContent[diceIdx];
-          else
-            innerDivDice.textContent = currentDice[randIdx];
+        if(initialContent.length == 16)
+          innerDivDice.textContent = initialContent[diceIdx];
+        else
+          innerDivDice.textContent = currentDice[randIdx];
 
-          divDice.appendChild(innerDivDice);
-          this.$.container.appendChild(divDice);
-        }
-
-        var self = this;
-        setInterval(function(){
-          if(!self._time == 0){
-            self._time --;
-          }
-        },1000);
+        divDice.appendChild(innerDivDice);
+        Polymer.dom(this.$.container).appendChild(divDice);
       }
-    });
-  </script>
-</polymer-element>
+
+      var self = this;
+      setInterval(function(){
+        if(!self._time == 0){
+          self._time --;
+        }
+      },1000);
+    }
+  });
+</script>
