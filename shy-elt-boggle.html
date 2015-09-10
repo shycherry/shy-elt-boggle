@@ -21,7 +21,7 @@
     }
   </style>
   <template>
-    <div style$="[[computeBoggleSize(eltSize)]]">
+    <div style$="[[_computeBoggleSize(eltSize)]]">
       <shy-elt-freewall id="container"></shy-elt-freewall>
     </div>
     <template is="dom-if" if="[[isTimeRunning(_time)]]">
@@ -64,7 +64,7 @@
     isTimeOver : function(iTime){
       return (!this.noTime) && (this._time <= 0);
     },
-    computeBoggleSize: function(iSize){
+    _computeBoggleSize: function(iSize){
       return 'width:'+iSize+'px;height:'+iSize+'px;'
     },
     ready : function(){

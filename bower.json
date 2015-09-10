@@ -14,7 +14,13 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~1.0.2",
-    "shy-elt-freewall": "shycherry/shy-elt-freewall#~1.0"
+    "polymer": "^1.0.2",
+    "shy-elt-freewall": "shycherry/shy-elt-freewall"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.5"
+  },
+  "resolutions": {
+    "polymer": "^1.0.0"
   }
 }
