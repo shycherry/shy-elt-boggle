@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../shy-elt-freewall/shy-elt-freewall.html">
 
-<dom-module name="shy-elt-boggle">
+<dom-module id="shy-elt-boggle">
   <style>
     :host{
       display: inline-block;
@@ -21,13 +21,13 @@
     }
   </style>
   <template>
-    <div style$="[[computeBoggleSize(eltSize)]]">
+    <div style$="[[_computeBoggleSize(eltSize)]]">
       <shy-elt-freewall id="container"></shy-elt-freewall>
     </div>
-    <template is="dom-if" if="[[isTimeRunning(_time)]]">
+    <template is="dom-if" if="[[_isTimeRunning(_time)]]">
       <div id="chrono">[[_time]]</div>
     </template>
-    <template is="dom-if" if="[[isTimeOver(_time)]]">
+    <template is="dom-if" if="[[_isTimeOver(_time)]]">
       <div id="chrono">TIME OUT !</div>
     </template>
 
@@ -58,18 +58,18 @@
       noTime: {type:Boolean, value: false},
       eltSize : {type:Number, value: 500}
     },
-    isTimeRunning : function(iTime){
+    _isTimeRunning : function(iTime){
       return (!this.noTime) && (this._time > 0);
     },
-    isTimeOver : function(iTime){
+    _isTimeOver : function(iTime){
       return (!this.noTime) && (this._time <= 0);
     },
-    computeBoggleSize: function(iSize){
+    _computeBoggleSize: function(iSize){
       return 'width:'+iSize+'px;height:'+iSize+'px;'
     },
     ready : function(){
       this._time = 180;
-      var initialContent = this.innerHTML.trim().toUpperCase();
+      var initialContent = Polymer.dom(this).innerHTML.trim().toUpperCase();
 
       for(var diceIdx in dices){
 
