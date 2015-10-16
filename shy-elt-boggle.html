@@ -1,5 +1,6 @@
-<link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../shy-elt-freewall/shy-elt-freewall.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
+<link rel="import" href="bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="bower_components/shy-elt-freewall/shy-elt-freewall.html">
 
 <dom-module id="shy-elt-boggle">
   <style>
@@ -54,6 +55,9 @@
   ];
   Polymer({
     is: "shy-elt-boggle",
+    behaviors:[
+      Polymer.IronResizableBehavior
+    ],
     properties: {
       noTime: {type:Boolean, value: false},
       eltSize : {type:Number, value: 500}

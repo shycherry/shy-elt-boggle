@@ -16,5 +16,8 @@
   "dependencies": {
     "polymer": "~1.0.2",
     "shy-elt-freewall": "shycherry/shy-elt-freewall#^1.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.5"
   }
 }
