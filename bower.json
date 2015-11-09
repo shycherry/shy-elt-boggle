@@ -19,8 +19,5 @@
   },
   "devDependencies": {
     "iron-component-page": "PolymerElements/iron-component-page#^1.0.5"
-  },
-  "resolutions": {
-    "polymer": "^1.0.0"
   }
 }
